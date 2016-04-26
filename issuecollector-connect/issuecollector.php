@@ -227,9 +227,6 @@ catch(Exception $e) {
 //             });
             
         	AJS.$.ajax({
-        		beforeSend: function (xhr) {
-        	        xhr.setRequestHeader("Authorization", "JWT <?php echo $clientJWT; ?>");
-        	    },
         		url: host +'/rest/api/2/issue/',
         		type: 'POST',
         		dataType: 'json',

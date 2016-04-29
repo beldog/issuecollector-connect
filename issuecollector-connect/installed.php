@@ -1,12 +1,12 @@
 <?php 
 $MODULE = "[INSTALL]";
-// file_put_contents('php://stderr', $MODULE.'server:'.print_r($_server, true));
-// file_put_contents('php://stderr', $MODULE.'GET:'.print_r($_GET, TRUE));
+// error_log($MODULE.'server:'.print_r($_server, true));
+// error_log($MODULE.'GET:'.print_r($_GET, TRUE));
 
 $payload = file_get_contents('php://input');
 $data = json_decode($payload);
 
-file_put_contents('php://stderr', $MODULE.'Payload:'.print_r($data, TRUE));
+error_log( $MODULE.'Payload:'.print_r($data, TRUE));
 
 try {
 
@@ -18,7 +18,7 @@ try {
 	$database->setAttribute(PDO::ATTR_ERRMODE,
 			PDO::ERRMODE_EXCEPTION);
 
-	file_put_contents('php://stderr', $MODULE.'Database opened...'.'\r\n');
+	error_log( $MODULE.'Database opened...'.'\r\n');
 	/*
 	 * Table structure:
 	 * clientKey TEXT PRIMARY KEY
@@ -27,14 +27,14 @@ try {
 	 */
 	
 	$query = "INSERT INTO payloads (clientKey, payload, time) VALUES ('".$data->{'clientKey'}."', '$payload', 0)";
-	file_put_contents('php://stderr', $MODULE.'Database to be updated with: '.  $data->{'clientKey'} .'/'. $query .'\r\n');
+	error_log( $MODULE.'Database to be updated with: '.  $data->{'clientKey'} .'/'. $query .'\r\n');
 	
 	$database->exec($query);
-	file_put_contents('php://stderr', $MODULE.'Database updated with: '.  $data->{'clientKey'} .'\r\n');
+	error_log( $MODULE.'Database updated with: '.  $data->{'clientKey'} .'\r\n');
 	
 	//list current clients
 	foreach ($database->query("SELECT * FROM payloads") as $row) {
-		file_put_contents('php://stderr', $MODULE.'Database:'.print_r($row));
+		error_log( $MODULE.'Database:'.print_r($row));
 	}
 	
 	// Close file db connection
@@ -42,14 +42,14 @@ try {
 }
 catch(PDOException $e) {
 	// Print PDOException message
-	file_put_contents('php://stderr', $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
-	file_put_contents('php://stderr', $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
 	$database = null;
 }
 catch(Exception $e) {
 	// Print Exception message
-	file_put_contents('php://stderr', $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
-	file_put_contents('php://stderr', $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
 	$database = null;
 }
 

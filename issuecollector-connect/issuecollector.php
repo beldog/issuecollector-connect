@@ -3,9 +3,8 @@
 $data = null;
 $clientJWT = $_GET['jwt'];
 try {
-	file_put_contents('php://stderr', $MODULE.'Client JWT: '.$clientJWT.'\r\n');
-
 	$MODULE = "[VIEW]";
+	error_log( $MODULE.'Client JWT: '.$clientJWT.'\r\n');
 	
 	// Create (connect to) SQLite database in file
 	$database = new PDO('sqlite:issuecollector.sqlite3','','', array(
@@ -15,7 +14,7 @@ try {
 	$database->setAttribute(PDO::ATTR_ERRMODE,
 			PDO::ERRMODE_EXCEPTION);
 
-	file_put_contents('php://stderr', $MODULE.'Database opened...'.'\r\n');
+	error_log( $MODULE.'Database opened...'.'\r\n');
 	/*
 	 * Table structure:
 	 * clientKey TEXT PRIMARY KEY
@@ -26,7 +25,7 @@ try {
 	//list current clients
 	foreach ($database->query("SELECT payload FROM payloads") as $row) {
 		$data = json_decode($row['payload']);
-		file_put_contents('php://stderr', $MODULE.'Extracted data:'.print_r($data));
+		//error_log( $MODULE.'Extracted data:'.print_r($data));
 	}
 	
 	// Close file db connection
@@ -34,14 +33,14 @@ try {
 }
 catch(PDOException $e) {
 	// Print PDOException message
-	file_put_contents('php://stderr', $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
-	file_put_contents('php://stderr', $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
 	$database = null;
 }
 catch(Exception $e) {
 	// Print Exception message
-	file_put_contents('php://stderr', $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
-	file_put_contents('php://stderr', $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR:'.print_r($e->getMessage(), TRUE) .'\r\n');
+	error_log( $MODULE.'ERROR-Code:'.print_r($e->getCode(), TRUE) .'\r\n');
 	$database = null;
 }
 ?>
@@ -49,14 +48,23 @@ catch(Exception $e) {
 <html>
     <head>
         <!-- External dependencies -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
         <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui.js"></script>
         <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-experimental.js"></script>
         <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-datepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui.css"/>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui-experimental.css"/>
-         <script src="//localhost:2990/jira/atlassian-connect/all.js" type="text/javascript"></script>
+         <script src="//***REMOVED***/atlassian-connect/all.js" type="text/javascript"></script>
+         
+         <script src="external/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-experimental.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-datepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui.css"/>
+        <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui-experimental.css"/>
+         <script src="//***REMOVED***/atlassian-connect/all.js" type="text/javascript"></script>
         <!-- / External dependencies -->
     </head>
     <body>
@@ -189,7 +197,7 @@ catch(Exception $e) {
         
         /* Logic */
         AJS.$("#issuecollector").submit(function(event){
-        	var host = '<?php echo $data->{'baseUrl'};?>';
+        	var host = '';
         	var issue_browse = host +"/browse/";
         	var countries_lmn = ['CH', 'AT', 'UAE']
         	

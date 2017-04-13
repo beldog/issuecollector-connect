@@ -2,7 +2,7 @@
 	"name": "Smart Issue collector",
 	"description": "Smart Issue Collector add-on",
 	"key": "net.nuevegen.jira.issuecollector.issuecollector",
-	"baseUrl": "https://nuevegen.net/jira/issuecollector",
+	"baseUrl": "https://nuevegen.net/jira/issuecollector-connect/issuecollector-connect",
 	"vendor": {
 		"name": "HECTOR LOPEZ SACANELL",
 		"url": "http://nuevegen.net"
@@ -58,7 +58,7 @@
 					"url": "/triggered.php"
 				},
 				"name": {
-					"value": "CascadeInfo"
+					"value": "Cascade Epic status"
 				},
 				"key": "issue-collector-epic-cascade"
 			}

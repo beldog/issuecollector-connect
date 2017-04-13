@@ -1,44 +1,67 @@
 {
-     "name": "Smart Issue collector",
-     "description": "Smart Issue Collector add-on",
-     "key": "net.nuevegen.jira.issuecollector.issuecollector",
-       "baseUrl": "https://nuevegen.net/jira/issuecollector",
-     "vendor": {
-         "name": "HECTOR LOPEZ SACANELL",
-           "url": "http://nuevegen.net"
-     },
-     "authentication": {
-         "type": "jwt"
-     },
-     "lifecycle": {
-        "installed": "/installed.php",
-        "uninstalled": "/uninstalled.php"
-    },
-     "apiVersion": 1,
-       "modules": {
-         "generalPages": [
-             {
-                 "url": "/issuecollector.php",
-                 "key": "issue-collector",
-                 "location": "system.top.navigation.bar",
-                 "name": {
-                     "value": "Issue Collector"
-                 }
-             }
-         ],
-         "jiraDashboardItems": [
-    {
-      "description": {
-        "value": "Smart Issue collector"
-      },
-      "url": "/issuecollector.php?dashboardItemId={dashboardItem.id}&dashboardId={dashboard.id}&view={dashboardItem.viewType}",
-      "configurable": false,
-      "thumbnailUrl": "atlassian-icon-16.png",
-      "name": {
-        "value": "Issue collector"
-      },
-      "key": "dashboard-issue-collector"
-    }
-  ]
-     }
- }
+	"name": "Smart Issue collector",
+	"description": "Smart Issue Collector add-on",
+	"key": "net.nuevegen.jira.issuecollector.issuecollector",
+	"baseUrl": "https://nuevegen.net/jira/issuecollector",
+	"vendor": {
+		"name": "HECTOR LOPEZ SACANELL",
+		"url": "http://nuevegen.net"
+	},
+	"authentication": {
+		"type": "jwt"
+	},
+	"lifecycle": {
+		"installed": "/installed.php",
+		"uninstalled": "/uninstalled.php"
+	},
+	"apiVersion": 1,
+	"modules": {
+		"generalPages": [
+			{
+				"url": "/issuecollector.php",
+				"key": "issue-collector",
+				"location": "system.top.navigation.bar",
+				"name": {
+					"value": "Issue Collector"
+				}
+			}
+		],
+		"jiraDashboardItems": [
+			{
+				"description": {
+					"value": "Smart Issue collector"
+				},
+				"url": "/issuecollector.php?dashboardItemId={dashboardItem.id}&dashboardId={dashboard.id}&view={dashboardItem.viewType}",
+				"configurable": false,
+				"thumbnailUrl": "atlassian-icon-16.png",
+				"name": {
+					"value": "Issue collector"
+				},
+				"key": "dashboard-issue-collector"
+			}
+		],
+		"jiraWorkflowPostFunctions": [
+			{
+				"description": {
+					"value": "Cascade Epic key info to linked issues"
+				},
+				"view": {
+					"url": "/view.js"
+				},
+				"edit": {
+					"url": "/edit.js"
+				},
+				"create": {
+					"url": "/create.js"
+				},
+				"triggered": {
+					"url": "/triggered.php"
+				},
+				"name": {
+					"value": "CascadeInfo"
+				},
+				"key": "issue-collector-epic-cascade"
+			}
+		]
+	}
+}

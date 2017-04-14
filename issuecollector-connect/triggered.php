@@ -6,7 +6,8 @@ $MODULE = "[TRIGGERED]";
 $payload = file_get_contents('php://input');
 $data = json_decode($payload);
 
-error_log( $MODULE.'Payload:'.print_r($data, TRUE));
+error_log($MODULE. 'Headers: '.print_r($_SERVER, TRUE));
+error_log( $MODULE.'Payload: '.print_r($data, TRUE));
 
 try {
 
@@ -40,9 +41,6 @@ try {
 // 	// Close file db connection
 // 	$database = null;
 
-	print_r($payload);
-	
-	print_r($data);
 }
 catch(PDOException $e) {
 	// Print PDOException message

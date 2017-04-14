@@ -5,7 +5,7 @@
 	"baseUrl": "https://nuevegen.net/jira/issuecollector-connect/issuecollector-connect",
 	"vendor": {
 		"name": "HECTOR LOPEZ SACANELL",
-		"url": "http://nuevegen.net"
+		"url": "https://nuevegen.net"
 	},
 	"authentication": {
 		"type": "jwt"
@@ -38,29 +38,6 @@
 					"value": "Issue collector"
 				},
 				"key": "dashboard-issue-collector"
-			}
-		],
-		"jiraWorkflowPostFunctions": [
-			{
-				"description": {
-					"value": "Cascade Epic key info to linked issues"
-				},
-				"view": {
-					"url": "/view.html"
-				},
-				"edit": {
-					"url": "/edit.html"
-				},
-				"create": {
-					"url": "/create.html"
-				},
-				"triggered": {
-					"url": "/triggered.php"
-				},
-				"name": {
-					"value": "Cascade Epic status"
-				},
-				"key": "issue-collector-epic-cascade"
 			}
 		]
 	}

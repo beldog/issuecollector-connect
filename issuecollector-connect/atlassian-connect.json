@@ -48,5 +48,8 @@
 				"filter": "project = GR and issuetype=Epic"
 			}
 		]
-	}
+	},
+	"scopes": [
+        "read", "write"
+    ]
 }

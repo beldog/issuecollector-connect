@@ -45,7 +45,7 @@ try {
 	
 	/* Extracting all linked issues*/
 	$searchUrl = "/search?jql=";
-	$searchLinkedIssues = $searchUrl."cf[11100]=". $_GET["issuekey"];
+	$searchLinkedIssues = $searchUrl."cf[10004]=". $_GET["issuekey"];
 	
 	$curl_url = $restUrl.$searchLinkedIssues;
 	

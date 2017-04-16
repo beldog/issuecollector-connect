@@ -2,7 +2,7 @@
 	"name": "Smart Issue collector",
 	"description": "Smart Issue Collector add-on",
 	"key": "net.nuevegen.jira.issuecollector.issuecollector",
-	"baseUrl": "https://nuevegen.net/jira/issuecollector-connect/issuecollector-connect",
+	"baseUrl": "https://nuevegen.net/jira/issuecollector-connect",
 	"vendor": {
 		"name": "HECTOR LOPEZ SACANELL",
 		"url": "https://nuevegen.net"

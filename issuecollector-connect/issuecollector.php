@@ -55,7 +55,7 @@ catch(Exception $e) {
         <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-datepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui.css"/>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui-experimental.css"/>
-         <script src="//***REMOVED***/atlassian-connect/all.js" type="text/javascript"></script>
+         <script src="//nuevegen.atlassian.net/atlassian-connect/all.js" type="text/javascript"></script>
          
          <script src="external/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
@@ -64,7 +64,7 @@ catch(Exception $e) {
         <script src="//aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-datepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui.css"/>
         <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui-experimental.css"/>
-         <script src="//***REMOVED***/atlassian-connect/all.js" type="text/javascript"></script>
+         <script src="//nuevegen.atlassian.net/atlassian-connect/all.js" type="text/javascript"></script>
         <!-- / External dependencies -->
     </head>
     <body>

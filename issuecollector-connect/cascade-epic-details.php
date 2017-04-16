@@ -95,6 +95,13 @@ try {
 	}
 	
 	curl_close($ch);
+	
+	//extracting linked issues
+	$linkedIssuesData = json_decode($result, true, 4);
+	foreach ($linkedIssuesData->issues as $linkedIssue) {
+		error_log( $MODULE.'Issue :'.$linkedIssue->{'key'} . "/". $linkedIssue->{'status'}->{'name'} ."/". $linkedIssue->{'status'}->{'statusCategory'}->{'name'});
+	}
+	
 }
 catch(PDOException $e) {
 	// Print PDOException message

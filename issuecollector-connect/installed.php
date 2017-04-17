@@ -39,6 +39,51 @@ try {
 	
 	// Close file db connection
 	$database = null;
+	
+	/* 
+	 * Registering webhooks
+	 */
+	$restUrl = "https://***/rest/webhooks/1.0/webhook";
+	
+	$data = '{
+			"name": "Cascade Epic details",
+			"events": ["jira:issue_updated"],
+			"url": "https://nuevegen.net/jira/issuecollector-connect/cascade-epic-details.php?issuekey=${issue.key}&projectkey=${project.key}",
+			"excludeBody": false,
+			"filters": {"issue-related-events-section": "project = GR and issuetype=Epic"}
+	}';
+	
+	$username = 'admin';
+	$password = '***';
+	
+	$curl_url = $restUrl;
+	
+	$ch = curl_init ();
+	$headers = array (
+			'Accept: application/json',
+			'Content-Type: application/json'
+	);
+	
+	curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt ( $ch, CURLOPT_VERBOSE, 1 );
+	curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
+	curl_setopt ( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
+	curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+	curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt ( $ch, CURLOPT_URL, $curl_url );
+	curl_setopt ( $ch, CURLOPT_USERPWD, "$username:$password" );
+	
+	$result = curl_exec ( $ch );
+	$ch_error = curl_error ( $ch );
+	
+	if ($ch_error) {
+		error_log ( $MODULE . 'cURL Error: ' . print_r ( $ch_error, TRUE ) );
+	} else {
+		error_log($MODULE.'cURL Result: '.print_r($result, TRUE));
+	}
+	
+	curl_close ( $ch );
 }
 catch(PDOException $e) {
 	// Print PDOException message

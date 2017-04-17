@@ -1,12 +1,12 @@
 <?php
 $MODULE = "[TRIGGERED]";
 error_log ( $MODULE . 'GET:' . print_r ( $_GET, TRUE ) );
-
+error_log ( $MODULE . 'GET:' . print_r ( $_SERVER, TRUE ) );
 $payload = file_get_contents ( 'php://input' );
 $data = json_decode ( $payload );
 error_log ( $MODULE . 'Payload: ' . print_r ( $data, TRUE ) );
 
-$restUrl = "https://nuevegen.atlassian.net/rest/api/2";
+$restUrl = "https://***/rest/api/2";
 
 try {
 	/* LOAD data from DB to :

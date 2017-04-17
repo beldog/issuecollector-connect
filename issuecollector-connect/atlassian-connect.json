@@ -39,17 +39,9 @@
 				},
 				"key": "dashboard-issue-collector"
 			}
-		],
-		"webhooks": [
-			{
-				"event": "jira:issue_updated",
-				"url": "/cascade-epic-details.php?issuekey=${issue.key}&projectkey=${project.key}",
-				"excludeBody": false,
-				"filter": "project = GR and issuetype=Epic"
-			}
 		]
 	},
 	"scopes": [
-        "read", "write"
+        "READ", "WRITE"
     ]
 }

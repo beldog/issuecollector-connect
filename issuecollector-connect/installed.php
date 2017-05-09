@@ -43,7 +43,7 @@ try {
 	/* 
 	 * Registering webhooks
 	 */
-	$restUrl = "https://***/rest/webhooks/1.0/webhook";
+	$restUrl = "https://nuevegen.atlassian.net/rest/webhooks/1.0/webhook";
 	
 	$data = '{
 			"name": "Cascade Epic details",
@@ -53,15 +53,13 @@ try {
 			"filters": {"issue-related-events-section": "project = GR and issuetype=Epic"}
 	}';
 	
-	$username = 'admin';
-	$password = '***';
-	
 	$curl_url = $restUrl;
 	
 	$ch = curl_init ();
 	$headers = array (
 			'Accept: application/json',
-			'Content-Type: application/json'
+			'Content-Type: application/json',
+			'Authorization: Basic ***'
 	);
 	
 	curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
@@ -72,7 +70,7 @@ try {
 	curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 	curl_setopt ( $ch, CURLOPT_URL, $curl_url );
-	curl_setopt ( $ch, CURLOPT_USERPWD, "$username:$password" );
+	//curl_setopt ( $ch, CURLOPT_USERPWD, "$username:$password" );
 	
 	$result = curl_exec ( $ch );
 	$ch_error = curl_error ( $ch );
